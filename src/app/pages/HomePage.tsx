@@ -57,7 +57,7 @@ export default function HomePage() {
 
           {/* Phone mockup */}
           <motion.div 
-            className="relative w-full max-w-[280px] md:max-w-[400px] shrink-0 px-4 md:px-0"
+            className="relative w-full max-w-[350px] md:max-w-[400px] shrink-0 px-2 md:px-0"
             initial={{ opacity: 0, y: 80, scale: 0.98, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
             transition={{ duration: 2.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
