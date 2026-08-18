@@ -25,8 +25,7 @@ export default function Footer() {
   return (
     <div className="px-2 pb-2 mt-auto">
       <div
-        className="relative rounded-[32px] overflow-hidden flex flex-col items-center justify-center"
-        style={{ background: "#0f0f0f", paddingTop: "237px", paddingBottom: "328px", paddingLeft: "48px", paddingRight: "48px" }}
+        className="relative rounded-[32px] overflow-hidden flex flex-col items-center justify-center bg-[#0f0f0f] pt-[150px] md:pt-[237px] pb-[400px] md:pb-[328px] px-6 md:px-12"
       >
         {/* Bottom background image – lighten blend */}
         <div
@@ -60,10 +59,9 @@ export default function Footer() {
         </div>
 
         {/* Main heading */}
-        <div className="relative z-10 max-w-[560px] text-center">
+        <div className="relative z-10 max-w-[560px] text-center px-4">
           <h1
-            className="font-medium text-white"
-            style={{ fontSize: "36px", letterSpacing: "-1.44px", lineHeight: "40px" }}
+            className="font-medium text-white text-[28px] md:text-[36px] leading-[32px] md:leading-[40px] tracking-[-1.12px] md:tracking-[-1.44px]"
           >
             Connect with verified sobriety squad on your recovery journey
           </h1>
@@ -71,28 +69,22 @@ export default function Footer() {
 
         {/* Footer bar */}
         <div
-          className="absolute bottom-0 px-6"
-          style={{ left: "16.91%", right: "16.91%", maxWidth: "1260px" }}
+          className="absolute bottom-0 px-4 md:px-6 w-full max-w-[1260px]"
         >
           <div className="absolute top-0 left-0 right-0" style={{ borderTop: "1px dashed rgba(255,255,255,0.12)" }} />
           <div
-            className="flex items-start justify-between h-[178px]"
+            className="flex flex-col md:flex-row items-center md:items-start justify-between py-6 md:py-0 md:h-[178px]"
             style={{ backdropFilter: "blur(8px)", background: "rgba(0,0,0,0.12)" }}
           >
             {/* Nav links */}
-            <div className="flex flex-col gap-3.5 py-8">
+            <div className="flex flex-row md:flex-col gap-6 md:gap-3.5 py-4 md:py-8">
               <Link to="/" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">Home</Link>
               <Link to="/support" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">Support</Link>
             </div>
 
             {/* Newsletter */}
             <div
-              className="flex flex-col gap-3 h-full pt-8 pl-6 overflow-hidden"
-              style={{
-                width: "384px",
-                maxWidth: "384px",
-                borderLeft: "1px dashed rgba(255,255,255,0.12)",
-              }}
+              className="flex flex-col gap-3 h-full pt-6 md:pt-8 md:pl-6 overflow-hidden w-full md:w-[384px] md:border-l border-dashed border-white/12 mt-6 md:mt-0"
             >
               <div className="flex items-center justify-between">
                 <span className="text-white text-[16px] font-medium tracking-[-0.16px]">Stay in touch</span>

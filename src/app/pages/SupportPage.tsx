@@ -28,7 +28,7 @@ export default function SupportPage() {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-[800px] pt-48 pb-24 px-11 w-full flex-1">
+    <div className="relative flex flex-col items-center justify-center min-h-[800px] pt-48 pb-24 px-4 md:px-11 w-full flex-1">
       {/* Stars Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50 z-0">
         {STARS.map((s, i) => (
@@ -57,8 +57,7 @@ export default function SupportPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-        className="text-white text-center font-medium mb-12"
-        style={{ fontSize: "40px", letterSpacing: "-1.2px", lineHeight: "1.1" }}
+        className="text-white text-center font-medium mb-12 text-[32px] md:text-[40px] tracking-tight leading-[1.1]"
       >
         Get support<br />or Share Your Feedback
       </motion.h1>
@@ -69,10 +68,10 @@ export default function SupportPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-        className="w-full max-w-[500px] rounded-[24px] p-8 flex flex-col gap-5"
+        className="w-full max-w-[500px] rounded-[24px] p-6 md:p-8 flex flex-col gap-5"
         style={{ background: "#151515", border: "1px solid rgba(255,255,255,0.04)" }}
       >
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex flex-col gap-2 flex-1">
             <label className="text-white/60 text-[13px] font-medium ml-1">Name</label>
             <input 

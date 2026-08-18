@@ -6,7 +6,7 @@ import imgAppLogo from "@/imports/1920WLight/c2352550d6ca2dfe89f6ffd7c61da1e1734
 export default function FloatingNav() {
   return (
     <motion.nav 
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[440px]"
+      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-[440px]"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.1 }}

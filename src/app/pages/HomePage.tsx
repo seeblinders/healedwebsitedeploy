@@ -10,7 +10,7 @@ import imgAppLogo from "@/imports/1920WLight/c2352550d6ca2dfe89f6ffd7c61da1e1734
 export default function HomePage() {
   return (
     <>
-      <section className="relative flex flex-col items-center justify-center min-h-[800px] pt-40 pb-24 px-11 overflow-hidden">
+      <section className="relative flex flex-col items-center justify-center min-h-[800px] pt-40 pb-24 px-4 md:px-11 overflow-hidden">
         {/* Hero photo – multiply masked with radial vignette */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -46,8 +46,8 @@ export default function HomePage() {
         <div className="relative flex flex-col items-center gap-8 max-w-[800px] w-full">
           {/* Hero title */}
           <motion.h2
-            className="font-medium text-center"
-            style={{ color: "#121111", fontSize: "36px", letterSpacing: "-1.44px", lineHeight: "40px" }}
+            className="font-medium text-center text-[28px] md:text-[36px] leading-[32px] md:leading-[40px] tracking-[-1.12px] md:tracking-[-1.44px]"
+            style={{ color: "#121111" }}
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
@@ -57,7 +57,7 @@ export default function HomePage() {
 
           {/* Phone mockup */}
           <motion.div 
-            className="relative w-[400px] shrink-0"
+            className="relative w-full max-w-[280px] md:max-w-[400px] shrink-0 px-4 md:px-0"
             initial={{ opacity: 0, y: 80, scale: 0.98, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
             transition={{ duration: 2.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
@@ -78,14 +78,14 @@ export default function HomePage() {
 
           {/* Download buttons */}
           <motion.div 
-            className="flex items-center gap-[26px]"
+            className="flex flex-col sm:flex-row items-center gap-[16px] sm:gap-[26px] w-full sm:w-auto px-4 sm:px-0"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.5 }}
           >
             <button
               onClick={() => toast("iOS app is coming soon!", { icon: <img src={imgAppLogo} alt="Logo" className="w-[18px] h-[18px] rounded-[4px] object-cover" /> })}
-              className="flex items-center gap-2 px-4 py-2 rounded-[14px] text-white text-[18px] font-medium tracking-[-0.18px] transition-transform active:scale-95"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3 sm:py-2 rounded-[14px] text-white text-[18px] font-medium tracking-[-0.18px] transition-transform active:scale-95"
               style={{
                 background: "#ff2f00",
                 border: "1px solid #ff2f01",
@@ -99,7 +99,7 @@ export default function HomePage() {
             </button>
             <button
               onClick={() => toast("Android app is coming soon!", { icon: <img src={imgAppLogo} alt="Logo" className="w-[18px] h-[18px] rounded-[4px] object-cover" /> })}
-              className="flex items-center gap-2 px-4 py-2 rounded-[14px] text-white text-[18px] font-medium tracking-[-0.18px] transition-transform active:scale-95"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3 sm:py-2 rounded-[14px] text-white text-[18px] font-medium tracking-[-0.18px] transition-transform active:scale-95"
               style={{
                 background: "#24635a",
                 boxShadow: "inset 0px 2px 1px 0px rgba(255,255,255,0.5)",
