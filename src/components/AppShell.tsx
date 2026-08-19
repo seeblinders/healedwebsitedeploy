@@ -1,12 +1,14 @@
 "use client";
 
 import { Toaster } from "sonner";
+import { useLocale } from "next-intl";
 import { usePathname } from "@/i18n/navigation";
 import FloatingNav from "./FloatingNav";
 import Footer from "./Footer";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const locale = useLocale();
   const isLight = pathname === "/";
   const isDark = !isLight;
 
@@ -14,7 +16,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     <div
       className="min-h-screen flex flex-col transition-colors duration-500"
       style={{
-        fontFamily: '"Figtree", sans-serif',
+        fontFamily: locale === "ar" ? '"IBM Plex Sans Arabic", sans-serif' : '"Figtree", sans-serif',
         background: isDark ? "#0f0f0f" : "#fffaf5",
       }}
     >
