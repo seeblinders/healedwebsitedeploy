@@ -118,13 +118,12 @@ export default function Footer() {
         <div
           className="absolute bottom-0 px-4 md:px-6 w-full max-w-[1260px]"
         >
-          <div className="absolute top-0 left-0 right-0" style={{ borderTop: "1px dashed rgba(255,255,255,0.12)" }} />
           <div
-            className="flex flex-col md:flex-row items-center md:items-start justify-between py-6 md:py-0 md:h-[178px]"
+            className="flex flex-col md:flex-row items-center md:items-start justify-center gap-10 md:gap-16 py-8 md:py-10 px-6 md:px-10 rounded-t-[24px]"
             style={{ backdropFilter: "blur(8px)", background: "rgba(0,0,0,0.12)" }}
           >
             {/* Nav links */}
-            <div className="flex flex-row gap-6 md:flex-col md:gap-3.5 py-4 md:py-8">
+            <div className="flex flex-row gap-6 md:flex-col md:gap-3.5">
               <Link href="/" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">{t("home")}</Link>
               <Link href="/waitlist" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">{t("waitlist")}</Link>
               <Link href="/support" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">{t("support")}</Link>
@@ -132,7 +131,7 @@ export default function Footer() {
 
             {/* Newsletter */}
             <div
-              className="flex flex-col gap-3 h-full pt-6 md:pt-8 md:ps-6 overflow-hidden w-full md:w-[384px] md:border-s border-dashed border-white/12 mt-6 md:mt-0"
+              className="flex flex-col gap-3 overflow-hidden w-full md:w-[384px]"
             >
               <div className="flex items-center justify-between">
                 <span className="text-white text-[16px] font-medium tracking-[-0.16px]">{t("stayInTouch")}</span>
