@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import "@/styles/index.css";
 import AppShell from "@/components/AppShell";
 import { routing } from "@/i18n/routing";
@@ -133,6 +134,18 @@ export default async function LocaleLayout({
             <AppShell>{children}</AppShell>
           </NextIntlClientProvider>
         </div>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-NNJ4VMGB2Z"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-NNJ4VMGB2Z');
+          `}
+        </Script>
       </body>
     </html>
   );
