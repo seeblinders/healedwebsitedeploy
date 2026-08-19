@@ -7,11 +7,8 @@ import Footer from "./Footer";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isDark =
-    pathname === "/support" ||
-    pathname === "/waitlist" ||
-    pathname === "/privacy" ||
-    pathname === "/terms";
+  const isLight = pathname === "/";
+  const isDark = !isLight;
 
   return (
     <div
