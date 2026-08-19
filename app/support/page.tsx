@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     url: "/support",
   },
   twitter: {
+    card: "summary_large_image",
     title: "Support & Feedback | Healed",
     description:
       "Get help or share feedback about Healed — your recovery journey companion.",

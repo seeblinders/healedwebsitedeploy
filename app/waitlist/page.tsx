@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     url: "/waitlist",
   },
   twitter: {
+    card: "summary_large_image",
     title: "Join the Waitlist | Healed",
     description:
       "Get early access to Healed — join the waitlist to connect with a verified sobriety squad on your recovery journey.",
