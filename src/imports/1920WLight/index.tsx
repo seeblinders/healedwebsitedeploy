@@ -11,7 +11,7 @@ function RioDBjHp4Ker1DoqwtmPpPw9OJpg() {
   return (
     <div className="flex-[1_0_0] min-h-px relative w-full" data-name="rioDBjHp4Ker1doqwtmPpPW9o.jpg">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute h-[212.01%] left-0 max-w-none top-[-56.01%] w-full" src={imgRioDBjHp4Ker1DoqwtmPpPw9OJpg} />
+        <img alt="" className="absolute h-[212.01%] left-0 max-w-none top-[-56.01%] w-full" src={imgRioDBjHp4Ker1DoqwtmPpPw9OJpg.src} />
       </div>
     </div>
   );
@@ -66,7 +66,7 @@ function Yt6FWycnZwlv0Jqyx0WmIlTkamiPng() {
   return (
     <div className="flex-[1_0_0] min-h-px relative rounded-[36px] w-full" data-name="Yt6FWycnZwlv0jqyx0WmIlTKAMI.png">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[36px]">
-        <img alt="" className="absolute h-full left-[-0.06%] max-w-none top-0 w-[100.11%]" src={imgYt6FWycnZwlv0Jqyx0WmIlTkamiPng} />
+        <img alt="" className="absolute h-full left-[-0.06%] max-w-none top-0 w-[100.11%]" src={imgYt6FWycnZwlv0Jqyx0WmIlTkamiPng.src} />
       </div>
     </div>
   );
@@ -84,7 +84,7 @@ function DeviceRenderM5BYpFv5UkCc6WJlq4WqvkzwPng() {
   return (
     <div className="flex-[1_0_0] h-full min-w-px relative" data-name="Device Render → M5BYpFV5ukCc6wJlq4Wqvkzw.png">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute h-full left-[2.17%] max-w-none top-0 w-[95.65%]" src={imgDeviceRenderM5BYpFv5UkCc6WJlq4WqvkzwPng} />
+        <img alt="" className="absolute h-full left-[2.17%] max-w-none top-0 w-[95.65%]" src={imgDeviceRenderM5BYpFv5UkCc6WJlq4WqvkzwPng.src} />
       </div>
     </div>
   );
@@ -325,7 +325,7 @@ function Component3MMx8105CXwBqEqnGqdoqu6T24QJpg() {
   return (
     <div className="flex-[1_0_0] min-h-px relative w-full" data-name="3MMx8105CXwBQEqnGqdoqu6t24Q.jpg">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute h-[252.4%] left-0 max-w-none top-[-76.2%] w-full" src={img3MMx8105CXwBqEqnGqdoqu6T24QJpg} />
+        <img alt="" className="absolute h-[252.4%] left-0 max-w-none top-[-76.2%] w-full" src={img3MMx8105CXwBqEqnGqdoqu6T24QJpg.src} />
       </div>
     </div>
   );
@@ -1942,7 +1942,7 @@ function DwvxiNdFsdPnkItvw2HeHkwlX8EPng() {
   return (
     <div className="flex-[1_0_0] min-h-px relative rounded-[6px] w-full" data-name="DWVXINdFsdPnkITVW2HEHkwlX8E.png">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[6px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgDwvxiNdFsdPnkItvw2HeHkwlX8EPng} />
+        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgDwvxiNdFsdPnkItvw2HeHkwlX8EPng.src} />
       </div>
     </div>
   );
