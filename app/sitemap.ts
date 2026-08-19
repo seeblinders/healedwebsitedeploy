@@ -14,20 +14,22 @@ const pages: { path: string; changeFrequency: MetadataRoute.Sitemap[number]["cha
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
-  return pages.map(({ path, changeFrequency, priority }) => ({
-    url: `${siteUrl}${path}`,
-    lastModified,
-    changeFrequency,
-    priority,
-    alternates: {
-      languages: Object.fromEntries(
-        routing.locales.map((locale) => [
-          locale,
-          locale === routing.defaultLocale
-            ? `${siteUrl}${path}`
-            : `${siteUrl}/${locale}${path}`,
-        ])
-      ),
-    },
-  }));
+  return pages.flatMap(({ path, changeFrequency, priority }) => {
+    const languages = Object.fromEntries(
+      routing.locales.map((locale) => [
+        locale,
+        locale === routing.defaultLocale
+          ? `${siteUrl}${path}`
+          : `${siteUrl}/${locale}${path}`,
+      ])
+    );
+
+    return routing.locales.map((locale) => ({
+      url: languages[locale],
+      lastModified,
+      changeFrequency,
+      priority,
+      alternates: { languages },
+    }));
+  });
 }
