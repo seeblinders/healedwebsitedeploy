@@ -123,7 +123,7 @@ export default function Footer() {
             style={{ backdropFilter: "blur(8px)", background: "rgba(0,0,0,0.12)" }}
           >
             {/* Nav links */}
-            <div className="flex flex-row gap-6 md:flex-col md:gap-3.5 order-2 md:order-1">
+            <div className="flex flex-row gap-6 md:flex-col md:gap-3.5 order-2 md:order-1 md:items-start" style={{ textAlign: "left" }}>
               <Link href="/" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">{t("home")}</Link>
               <Link href="/waitlist" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">{t("waitlist")}</Link>
               <Link href="/support" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">{t("support")}</Link>
