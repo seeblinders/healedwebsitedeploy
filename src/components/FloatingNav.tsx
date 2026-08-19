@@ -56,11 +56,10 @@ export default function FloatingNav() {
               type="button"
               onClick={handleLanguageToggle}
               aria-label={tFooter("language")}
-              className="flex items-center justify-center gap-1 h-[34px] px-[10px] rounded-full text-[13px] font-medium tracking-[-0.13px] transition-colors hover:bg-white/10"
+              className="flex items-center justify-center w-[34px] h-[34px] rounded-full transition-colors hover:bg-white/10"
               style={{ color: "rgba(255,255,255,0.65)" }}
             >
-              <Globe className="w-[15px] h-[15px]" />
-              {locale === "en" ? "AR" : "EN"}
+              <Globe className="w-[16px] h-[16px]" />
             </button>
 
             <button
