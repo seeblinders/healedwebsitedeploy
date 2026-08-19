@@ -119,11 +119,11 @@ export default function Footer() {
           className="absolute bottom-0 px-4 md:px-6 w-full max-w-[1260px]"
         >
           <div
-            className="flex flex-col md:flex-row items-center md:items-start justify-center gap-10 md:gap-16 py-8 md:py-10 px-6 md:px-10 rounded-t-[24px]"
+            className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8 py-8 md:py-10 px-6 md:px-10 rounded-t-[24px]"
             style={{ backdropFilter: "blur(8px)", background: "rgba(0,0,0,0.12)" }}
           >
             {/* Nav links */}
-            <div className="flex flex-row gap-6 md:flex-col md:gap-3.5">
+            <div className="flex flex-row gap-6 md:flex-col md:gap-3.5 order-2 md:order-1">
               <Link href="/" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">{t("home")}</Link>
               <Link href="/waitlist" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">{t("waitlist")}</Link>
               <Link href="/support" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">{t("support")}</Link>
@@ -131,22 +131,45 @@ export default function Footer() {
 
             {/* Newsletter */}
             <div
-              className="flex flex-col gap-3 overflow-hidden w-full md:w-[384px]"
+              className="flex flex-col gap-4 overflow-hidden w-full md:w-[384px] order-1 md:order-2"
             >
-              <div className="flex items-center justify-between">
-                <span className="text-white text-[16px] font-medium tracking-[-0.16px]">{t("stayInTouch")}</span>
-                <div className="flex items-center gap-4">
-                  <a href="https://www.instagram.com/healed.app/" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
-                    <Instagram className="w-[20px] h-[20px]" />
-                  </a>
-                  <a href="https://www.tiktok.com/@healed.app" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
-                    <TiktokIcon className="w-[18px] h-[18px]" />
-                  </a>
-                  <a href="https://www.linkedin.com/company/healedapp" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
-                    <Linkedin className="w-[20px] h-[20px]" />
-                  </a>
+              <div className="flex items-center gap-4">
+                <a href="https://www.instagram.com/healed.app/" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
+                  <Instagram className="w-[20px] h-[20px]" />
+                </a>
+                <a href="https://www.tiktok.com/@healed.app" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
+                  <TiktokIcon className="w-[18px] h-[18px]" />
+                </a>
+                <a href="https://www.linkedin.com/company/healedapp" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
+                  <Linkedin className="w-[20px] h-[20px]" />
+                </a>
+              </div>
+
+              <div
+                className="relative flex items-stretch rounded-[12px] overflow-hidden"
+                style={{ background: "rgba(18,17,17,0.75)", border: "1px solid rgba(255,255,255,0.06)" }}
+              >
+                <input
+                  type="email"
+                  placeholder={t("emailPlaceholder")}
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  onKeyDown={e => e.key === "Enter" && handleSubscribe()}
+                  className="flex-1 bg-transparent text-[16px] ps-4 py-3.5 outline-none text-[rgba(255,255,255,0.65)] placeholder:text-[rgba(255,255,255,0.65)]"
+                  style={{ paddingInlineEnd: "138px" }}
+                />
+                <div className="absolute end-1 top-1 bottom-1">
+                  <button
+                    onClick={handleSubscribe}
+                    disabled={subscribing}
+                    className="h-full text-white text-[16px] px-4 rounded-[8px] whitespace-nowrap transition-colors hover:bg-black active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
+                    style={{ background: "#292929" }}
+                  >
+                    {subscribing ? t("subscribing") : `↵  ${t("subscribe")}`}
+                  </button>
                 </div>
               </div>
+
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                 <Link href="/privacy" className="text-[13px] font-medium tracking-[-0.13px] hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>{t("privacyPolicy")}</Link>
                 <Link href="/terms" className="text-[13px] font-medium tracking-[-0.13px] hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>{t("termsOfService")}</Link>
@@ -182,30 +205,6 @@ export default function Footer() {
                       ))}
                     </div>
                   )}
-                </div>
-              </div>
-              <div
-                className="relative flex items-stretch rounded-[12px] overflow-hidden"
-                style={{ background: "rgba(18,17,17,0.75)", border: "1px solid rgba(255,255,255,0.06)" }}
-              >
-                <input
-                  type="email"
-                  placeholder={t("emailPlaceholder")}
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  onKeyDown={e => e.key === "Enter" && handleSubscribe()}
-                  className="flex-1 bg-transparent text-[16px] ps-4 py-3.5 outline-none text-[rgba(255,255,255,0.65)] placeholder:text-[rgba(255,255,255,0.65)]"
-                  style={{ paddingInlineEnd: "138px" }}
-                />
-                <div className="absolute end-1 top-1 bottom-1">
-                  <button
-                    onClick={handleSubscribe}
-                    disabled={subscribing}
-                    className="h-full text-white text-[16px] px-4 rounded-[8px] whitespace-nowrap transition-colors hover:bg-black active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
-                    style={{ background: "#292929" }}
-                  >
-                    {subscribing ? t("subscribing") : `↵  ${t("subscribe")}`}
-                  </button>
                 </div>
               </div>
             </div>
