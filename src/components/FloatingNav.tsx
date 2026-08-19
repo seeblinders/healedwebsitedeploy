@@ -34,11 +34,11 @@ export default function FloatingNav() {
       transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.1 }}
     >
       <div
-        className="flex items-center justify-center overflow-clip ps-[20px] pe-[10px] py-[10px] relative rounded-[72px] w-full"
+        className="flex items-center justify-center overflow-clip px-[10px] py-[10px] relative rounded-[72px] w-full"
         style={{ background: "#171717", backdropFilter: "blur(6px)" }}
       >
         <div className="flex flex-1 isolate items-center justify-between relative">
-          <div className="flex flex-1 gap-[36px] items-center pe-[20px] relative z-[2]">
+          <div className="flex flex-1 gap-[36px] items-center ps-[10px] pe-[20px] relative z-[2]">
             <Link href="/">
               <img src={imgAppLogo.src} alt="Logo" className="size-[26px] rounded-[6px] shrink-0 object-cover" />
             </Link>
