@@ -131,7 +131,8 @@ export default function Footer() {
 
             {/* Newsletter */}
             <div
-              className="flex flex-col gap-4 overflow-hidden w-full md:w-[384px] order-1 md:order-2"
+              className="flex flex-col items-end gap-4 overflow-hidden w-full md:w-[384px] order-1 md:order-2"
+              style={{ textAlign: "right" }}
             >
               <div className="flex items-center gap-4">
                 <a href="https://www.instagram.com/healed.app/" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
@@ -170,7 +171,7 @@ export default function Footer() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              <div className="flex flex-wrap items-center justify-end gap-x-4 gap-y-2">
                 <Link href="/privacy" className="text-[13px] font-medium tracking-[-0.13px] hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>{t("privacyPolicy")}</Link>
                 <Link href="/terms" className="text-[13px] font-medium tracking-[-0.13px] hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>{t("termsOfService")}</Link>
 
@@ -189,7 +190,7 @@ export default function Footer() {
 
                   {langOpen && (
                     <div
-                      className="absolute bottom-full mb-2 start-0 min-w-[120px] rounded-[10px] overflow-hidden z-20"
+                      className="absolute bottom-full mb-2 end-0 min-w-[120px] rounded-[10px] overflow-hidden z-20"
                       style={{ background: "#1c1c1c", border: "1px solid rgba(255,255,255,0.08)" }}
                     >
                       {routing.locales.map((loc) => (
@@ -197,7 +198,7 @@ export default function Footer() {
                           key={loc}
                           type="button"
                           onClick={() => handleLanguageChange(loc)}
-                          className="w-full text-start px-3 py-2 text-[13px] font-medium transition-colors hover:bg-white/5"
+                          className="w-full text-end px-3 py-2 text-[13px] font-medium transition-colors hover:bg-white/5"
                           style={{ color: loc === locale ? "#fff" : "rgba(255,255,255,0.55)" }}
                         >
                           {LANGUAGE_LABELS[loc]}
