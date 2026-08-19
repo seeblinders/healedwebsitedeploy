@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { toast } from "sonner";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
@@ -17,14 +17,17 @@ export default function FloatingNav() {
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
+  const { scrollY } = useScroll();
+  const maxWidth = useTransform(scrollY, [0, 160], [560, 440], { clamp: true });
 
   const handleLanguageToggle = () => {
     router.replace(pathname, { locale: NEXT_LOCALE[locale] });
   };
 
   return (
-    <motion.nav 
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-[440px]"
+    <motion.nav
+      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)]"
+      style={{ maxWidth }}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.1 }}
