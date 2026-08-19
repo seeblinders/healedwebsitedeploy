@@ -50,7 +50,7 @@ export default function HomePageClient() {
         <div className="relative flex flex-col items-center gap-8 max-w-[800px] w-full">
           {/* Hero title */}
           <motion.h2
-            className="font-medium text-center text-[28px] md:text-[36px] leading-[32px] md:leading-[40px] tracking-[-1.12px] md:tracking-[-1.44px]"
+            className="font-medium text-center text-[28px] md:text-[36px] leading-[32px] md:leading-[40px] tracking-[-1.12px] md:tracking-[-1.44px] mb-4 md:mb-6"
             style={{ color: "#121111" }}
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
