@@ -107,7 +107,7 @@ export default function Footer() {
             style={{ backdropFilter: "blur(8px)", background: "rgba(0,0,0,0.12)" }}
           >
             {/* Nav links */}
-            <div className="flex flex-row md:flex-col gap-6 md:gap-3.5 py-4 md:py-8">
+            <div className="flex flex-row gap-6 md:flex-col md:gap-3.5 py-4 md:py-8">
               <Link href="/" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">Home</Link>
               <Link href="/waitlist" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">Waitlist</Link>
               <Link href="/support" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">Support</Link>
@@ -130,6 +130,10 @@ export default function Footer() {
                     <Linkedin className="w-[20px] h-[20px]" />
                   </a>
                 </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <Link href="/privacy" className="text-[13px] font-medium tracking-[-0.13px] hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Privacy Policy</Link>
+                <Link href="/terms" className="text-[13px] font-medium tracking-[-0.13px] hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Terms of Service</Link>
               </div>
               <div
                 className="relative flex items-stretch rounded-[12px] overflow-hidden"
