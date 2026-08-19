@@ -148,11 +148,9 @@ export default function Footer() {
                   </a>
                 </div>
               </div>
-              <div className="flex items-center justify-between gap-4">
-                <div className="flex items-center gap-4">
-                  <Link href="/privacy" className="text-[13px] font-medium tracking-[-0.13px] hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>{t("privacyPolicy")}</Link>
-                  <Link href="/terms" className="text-[13px] font-medium tracking-[-0.13px] hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>{t("termsOfService")}</Link>
-                </div>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <Link href="/privacy" className="text-[13px] font-medium tracking-[-0.13px] hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>{t("privacyPolicy")}</Link>
+                <Link href="/terms" className="text-[13px] font-medium tracking-[-0.13px] hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>{t("termsOfService")}</Link>
 
                 <div className="relative">
                   <button
@@ -169,7 +167,7 @@ export default function Footer() {
 
                   {langOpen && (
                     <div
-                      className="absolute bottom-full mb-2 end-0 min-w-[120px] rounded-[10px] overflow-hidden z-20"
+                      className="absolute bottom-full mb-2 start-0 min-w-[120px] rounded-[10px] overflow-hidden z-20"
                       style={{ background: "#1c1c1c", border: "1px solid rgba(255,255,255,0.08)" }}
                     >
                       {routing.locales.map((loc) => (

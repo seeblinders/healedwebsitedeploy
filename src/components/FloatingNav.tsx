@@ -1,13 +1,31 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
 import { toast } from "sonner";
-import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Globe } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 import imgAppLogo from "@/imports/1920WLight/c2352550d6ca2dfe89f6ffd7c61da1e1734903b9.png";
+
+const LANGUAGE_LABELS: Record<string, string> = {
+  en: "English",
+  ar: "العربية",
+};
 
 export default function FloatingNav() {
   const t = useTranslations("Nav");
+  const tFooter = useTranslations("Footer");
+  const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
+  const [langOpen, setLangOpen] = useState(false);
+
+  const handleLanguageChange = (nextLocale: string) => {
+    setLangOpen(false);
+    router.replace(pathname, { locale: nextLocale });
+  };
 
   return (
     <motion.nav 
@@ -34,7 +52,39 @@ export default function FloatingNav() {
               </Link>
             </div>
           </div>
-          <div className="relative shrink-0 z-[1]">
+          <div className="relative shrink-0 z-[1] flex items-center gap-2">
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setLangOpen((open) => !open)}
+                aria-label={tFooter("language")}
+                aria-expanded={langOpen}
+                className="flex items-center justify-center w-[34px] h-[34px] rounded-full transition-colors hover:bg-white/10"
+                style={{ color: "rgba(255,255,255,0.65)" }}
+              >
+                <Globe className="w-[16px] h-[16px]" />
+              </button>
+
+              {langOpen && (
+                <div
+                  className="absolute top-full mt-2 end-0 min-w-[120px] rounded-[10px] overflow-hidden z-20"
+                  style={{ background: "#1c1c1c", border: "1px solid rgba(255,255,255,0.08)" }}
+                >
+                  {routing.locales.map((loc) => (
+                    <button
+                      key={loc}
+                      type="button"
+                      onClick={() => handleLanguageChange(loc)}
+                      className="w-full text-start px-3 py-2 text-[13px] font-medium transition-colors hover:bg-white/5"
+                      style={{ color: loc === locale ? "#fff" : "rgba(255,255,255,0.55)" }}
+                    >
+                      {LANGUAGE_LABELS[loc]}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <button
               onClick={() => toast(t("comingSoon"), { icon: <img src={imgAppLogo.src} alt="Logo" className="w-[18px] h-[18px] rounded-[4px] object-cover" /> })}
               className="flex items-center justify-center overflow-clip px-[12px] py-[6px] relative rounded-[120px]"
