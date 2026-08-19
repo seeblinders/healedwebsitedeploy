@@ -1,7 +1,7 @@
 "use client";
 
 import { Toaster } from "sonner";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 import FloatingNav from "./FloatingNav";
 import Footer from "./Footer";
 

@@ -2,11 +2,18 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
-import { Instagram, Linkedin } from "lucide-react";
-import Link from "next/link";
+import { Instagram, Linkedin, Globe } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 import imgDarkBg from "@/imports/1920WLight/1c5d1870b74fe181d24a03be5ace052f8fbff062.png";
 import imgAppLogo from "@/imports/1920WLight/c2352550d6ca2dfe89f6ffd7c61da1e1734903b9.png";
 import { imgBgImage1 } from "@/imports/1920WLight/svg-2qa5s";
+
+const LANGUAGE_LABELS: Record<string, string> = {
+  en: "English",
+  ar: "العربية",
+};
 
 const TiktokIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 448 512" fill="currentColor">
@@ -22,12 +29,17 @@ const STARS = Array.from({ length: 46 }, (_, i) => ({
 }));
 
 export default function Footer() {
+  const t = useTranslations("Footer");
+  const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [subscribing, setSubscribing] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
 
   const handleSubscribe = async () => {
     if (!email) {
-      toast.error("Please enter your email address first.");
+      toast.error(t("emailRequired"));
       return;
     }
 
@@ -41,15 +53,20 @@ export default function Footer() {
 
       if (!res.ok) throw new Error("Request failed");
 
-      toast("Thanks for joining! The app is coming soon.", {
+      toast(t("subscribeSuccess"), {
         icon: <img src={imgAppLogo.src} alt="Logo" className="w-[18px] h-[18px] rounded-[4px] object-cover" />,
       });
       setEmail("");
     } catch {
-      toast.error("Something went wrong. Please try again.");
+      toast.error(t("subscribeError"));
     } finally {
       setSubscribing(false);
     }
+  };
+
+  const handleLanguageChange = (nextLocale: string) => {
+    setLangOpen(false);
+    router.replace(pathname, { locale: nextLocale });
   };
 
   return (
@@ -93,7 +110,7 @@ export default function Footer() {
           <h1
             className="font-medium text-white text-[28px] md:text-[36px] leading-[32px] md:leading-[40px] tracking-[-1.12px] md:tracking-[-1.44px]"
           >
-            Connect with verified sobriety squad on your recovery journey
+            {t("heading")}
           </h1>
         </div>
 
@@ -108,17 +125,17 @@ export default function Footer() {
           >
             {/* Nav links */}
             <div className="flex flex-row gap-6 md:flex-col md:gap-3.5 py-4 md:py-8">
-              <Link href="/" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">Home</Link>
-              <Link href="/waitlist" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">Waitlist</Link>
-              <Link href="/support" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">Support</Link>
+              <Link href="/" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">{t("home")}</Link>
+              <Link href="/waitlist" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">{t("waitlist")}</Link>
+              <Link href="/support" className="text-white text-[15px] font-medium tracking-[-0.15px] hover:opacity-80 transition-opacity">{t("support")}</Link>
             </div>
 
             {/* Newsletter */}
             <div
-              className="flex flex-col gap-3 h-full pt-6 md:pt-8 md:pl-6 overflow-hidden w-full md:w-[384px] md:border-l border-dashed border-white/12 mt-6 md:mt-0"
+              className="flex flex-col gap-3 h-full pt-6 md:pt-8 md:ps-6 overflow-hidden w-full md:w-[384px] md:border-s border-dashed border-white/12 mt-6 md:mt-0"
             >
               <div className="flex items-center justify-between">
-                <span className="text-white text-[16px] font-medium tracking-[-0.16px]">Stay in touch</span>
+                <span className="text-white text-[16px] font-medium tracking-[-0.16px]">{t("stayInTouch")}</span>
                 <div className="flex items-center gap-4">
                   <a href="https://www.instagram.com/healed.app/" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">
                     <Instagram className="w-[20px] h-[20px]" />
@@ -131,9 +148,44 @@ export default function Footer() {
                   </a>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
-                <Link href="/privacy" className="text-[13px] font-medium tracking-[-0.13px] hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Privacy Policy</Link>
-                <Link href="/terms" className="text-[13px] font-medium tracking-[-0.13px] hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>Terms of Service</Link>
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <Link href="/privacy" className="text-[13px] font-medium tracking-[-0.13px] hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>{t("privacyPolicy")}</Link>
+                  <Link href="/terms" className="text-[13px] font-medium tracking-[-0.13px] hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}>{t("termsOfService")}</Link>
+                </div>
+
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setLangOpen((open) => !open)}
+                    aria-label={t("language")}
+                    aria-expanded={langOpen}
+                    className="flex items-center gap-1.5 text-[13px] font-medium tracking-[-0.13px] hover:text-white transition-colors"
+                    style={{ color: "rgba(255,255,255,0.4)" }}
+                  >
+                    <Globe className="w-[14px] h-[14px]" />
+                    {LANGUAGE_LABELS[locale]}
+                  </button>
+
+                  {langOpen && (
+                    <div
+                      className="absolute bottom-full mb-2 end-0 min-w-[120px] rounded-[10px] overflow-hidden z-20"
+                      style={{ background: "#1c1c1c", border: "1px solid rgba(255,255,255,0.08)" }}
+                    >
+                      {routing.locales.map((loc) => (
+                        <button
+                          key={loc}
+                          type="button"
+                          onClick={() => handleLanguageChange(loc)}
+                          className="w-full text-start px-3 py-2 text-[13px] font-medium transition-colors hover:bg-white/5"
+                          style={{ color: loc === locale ? "#fff" : "rgba(255,255,255,0.55)" }}
+                        >
+                          {LANGUAGE_LABELS[loc]}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
               <div
                 className="relative flex items-stretch rounded-[12px] overflow-hidden"
@@ -141,21 +193,21 @@ export default function Footer() {
               >
                 <input
                   type="email"
-                  placeholder="name@email.com"
+                  placeholder={t("emailPlaceholder")}
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   onKeyDown={e => e.key === "Enter" && handleSubscribe()}
-                  className="flex-1 bg-transparent text-[16px] pl-4 py-3.5 outline-none text-[rgba(255,255,255,0.65)] placeholder:text-[rgba(255,255,255,0.65)]"
-                  style={{ paddingRight: "138px" }}
+                  className="flex-1 bg-transparent text-[16px] ps-4 py-3.5 outline-none text-[rgba(255,255,255,0.65)] placeholder:text-[rgba(255,255,255,0.65)]"
+                  style={{ paddingInlineEnd: "138px" }}
                 />
-                <div className="absolute right-1 top-1 bottom-1">
+                <div className="absolute end-1 top-1 bottom-1">
                   <button
                     onClick={handleSubscribe}
                     disabled={subscribing}
                     className="h-full text-white text-[16px] px-4 rounded-[8px] whitespace-nowrap transition-colors hover:bg-black active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
                     style={{ background: "#292929" }}
                   >
-                    {subscribing ? "..." : "↵  Subscribe"}
+                    {subscribing ? t("subscribing") : `↵  ${t("subscribe")}`}
                   </button>
                 </div>
               </div>

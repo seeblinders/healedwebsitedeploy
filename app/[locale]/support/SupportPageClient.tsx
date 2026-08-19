@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 const STARS = Array.from({ length: 46 }, (_, i) => ({
   left: `${((i * 73 + 13) % 1000) / 10}%`,
@@ -12,6 +13,7 @@ const STARS = Array.from({ length: 46 }, (_, i) => ({
 }));
 
 export default function SupportPageClient() {
+  const t = useTranslations("Support");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [useCase, setUseCase] = useState("");
@@ -20,7 +22,7 @@ export default function SupportPageClient() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email || !useCase) {
-      toast.error("Please fill in all fields.");
+      toast.error(t("fillAllFields"));
       return;
     }
 
@@ -34,12 +36,12 @@ export default function SupportPageClient() {
 
       if (!res.ok) throw new Error("Request failed");
 
-      toast.success("Feedback submitted! We'll get back to you soon.");
+      toast.success(t("submitSuccess"));
       setName("");
       setEmail("");
       setUseCase("");
     } catch {
-      toast.error("Something went wrong. Please try again.");
+      toast.error(t("submitError"));
     } finally {
       setSubmitting(false);
     }
@@ -67,7 +69,7 @@ export default function SupportPageClient() {
         className="px-4 py-1.5 rounded-full mb-6"
         style={{ background: "#292929" }}
       >
-        <span className="text-white/80 text-[13px] font-medium tracking-wide">Get help</span>
+        <span className="text-white/80 text-[13px] font-medium tracking-wide">{t("badge")}</span>
       </motion.div>
 
       {/* Heading */}
@@ -77,7 +79,7 @@ export default function SupportPageClient() {
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
         className="text-white text-center font-medium mb-12 text-[32px] md:text-[40px] tracking-tight leading-[1.1]"
       >
-        Get support<br />or Share Your Feedback
+        {t.rich("heading", { br: () => <br /> })}
       </motion.h1>
 
       {/* Form */}
@@ -91,20 +93,20 @@ export default function SupportPageClient() {
       >
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex flex-col gap-2 flex-1">
-            <label className="text-white/60 text-[13px] font-medium ml-1">Name</label>
-            <input 
-              type="text" 
-              placeholder="Akim" 
+            <label className="text-white/60 text-[13px] font-medium ms-1">{t("nameLabel")}</label>
+            <input
+              type="text"
+              placeholder={t("namePlaceholder")}
               value={name}
               onChange={e => setName(e.target.value)}
               className="w-full bg-[#202020] text-white px-4 py-3.5 rounded-[12px] outline-none border border-transparent focus:border-[#404040] transition-colors placeholder:text-white/30"
             />
           </div>
           <div className="flex flex-col gap-2 flex-1">
-            <label className="text-white/60 text-[13px] font-medium ml-1">Email</label>
-            <input 
-              type="email" 
-              placeholder="Perminov" 
+            <label className="text-white/60 text-[13px] font-medium ms-1">{t("emailLabel")}</label>
+            <input
+              type="email"
+              placeholder={t("emailPlaceholder")}
               value={email}
               onChange={e => setEmail(e.target.value)}
               className="w-full bg-[#202020] text-white px-4 py-3.5 rounded-[12px] outline-none border border-transparent focus:border-[#404040] transition-colors placeholder:text-white/30"
@@ -113,9 +115,9 @@ export default function SupportPageClient() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-white/60 text-[13px] font-medium ml-1">Describe your use case</label>
-          <textarea 
-            placeholder="Use case" 
+          <label className="text-white/60 text-[13px] font-medium ms-1">{t("useCaseLabel")}</label>
+          <textarea
+            placeholder={t("useCasePlaceholder")}
             value={useCase}
             onChange={e => setUseCase(e.target.value)}
             className="w-full bg-[#202020] text-white px-4 py-4 rounded-[12px] outline-none border border-transparent focus:border-[#404040] transition-colors resize-none placeholder:text-white/30 min-h-[120px]"
@@ -127,7 +129,7 @@ export default function SupportPageClient() {
             disabled={submitting}
             className="w-full bg-white text-black font-medium py-3.5 rounded-[12px] mt-2 hover:bg-gray-100 transition-colors active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {submitting ? "Submitting..." : "Submit"}
+            {submitting ? t("submitting") : t("submit")}
           </button>
         </motion.form>
       </div>

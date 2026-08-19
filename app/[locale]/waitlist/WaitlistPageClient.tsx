@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 const STARS = Array.from({ length: 70 }, (_, i) => ({
   left: `${((i * 73 + 13) % 1000) / 10}%`,
@@ -14,6 +15,7 @@ const STARS = Array.from({ length: 70 }, (_, i) => ({
 const AVATAR_COLORS = ["#ff2f00", "#24635a", "#8b5cf6", "#e5a54b"];
 
 export default function WaitlistPageClient() {
+  const t = useTranslations("Waitlist");
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [joined, setJoined] = useState(false);
@@ -21,7 +23,7 @@ export default function WaitlistPageClient() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !email.includes("@")) {
-      toast.error("Please enter a valid email address.");
+      toast.error(t("invalidEmail"));
       return;
     }
 
@@ -36,10 +38,10 @@ export default function WaitlistPageClient() {
       if (!res.ok) throw new Error("Request failed");
 
       setJoined(true);
-      toast.success("You're on the list! We'll be in touch soon.");
+      toast.success(t("joinSuccess"));
       setEmail("");
     } catch {
-      toast.error("Something went wrong. Please try again.");
+      toast.error(t("joinError"));
     } finally {
       setSubmitting(false);
     }
@@ -81,7 +83,7 @@ export default function WaitlistPageClient() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: "#ff2f00" }} />
             <span className="relative inline-flex rounded-full h-1.5 w-1.5" style={{ background: "#ff2f00" }} />
           </span>
-          <span className="text-white/80 text-[13px] font-medium tracking-wide">Early access opening soon</span>
+          <span className="text-white/80 text-[13px] font-medium tracking-wide">{t("badge")}</span>
         </motion.div>
 
         {/* Heading */}
@@ -91,7 +93,7 @@ export default function WaitlistPageClient() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           className="text-white text-center font-medium mb-5 text-[36px] md:text-[52px] tracking-[-1.6px] leading-[1.05]"
         >
-          Be first on your<br />sobriety squad
+          {t.rich("heading", { br: () => <br /> })}
         </motion.h1>
 
         {/* Subtitle */}
@@ -102,7 +104,7 @@ export default function WaitlistPageClient() {
           className="text-[18px] md:text-[20px] font-medium text-center tracking-[-0.3px] leading-[28px] max-w-[460px] mb-10"
           style={{ color: "rgba(255,255,255,0.6)" }}
         >
-          Join the waitlist for early access to Healed — verified accountability partners, built for your recovery journey.
+          {t("subtitle")}
         </motion.p>
 
         {/* Form card */}
@@ -131,18 +133,18 @@ export default function WaitlistPageClient() {
                   <path d="M5 13l4 4L19 7" stroke="#3fae9e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
-              <h3 className="text-white text-[20px] font-medium tracking-[-0.2px]">You&apos;re on the list</h3>
+              <h3 className="text-white text-[20px] font-medium tracking-[-0.2px]">{t("joinedTitle")}</h3>
               <p className="text-[15px]" style={{ color: "rgba(255,255,255,0.55)" }}>
-                We&apos;ll email you the moment early access opens.
+                {t("joinedSubtitle")}
               </p>
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">
-                <label className="text-white/60 text-[13px] font-medium ml-1">Email address</label>
+                <label className="text-white/60 text-[13px] font-medium ms-1">{t("emailLabel")}</label>
                 <input
                   type="email"
-                  placeholder="you@email.com"
+                  placeholder={t("emailPlaceholder")}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full bg-[#202020] text-white px-4 py-3.5 rounded-[12px] outline-none border border-transparent focus:border-[#404040] transition-colors placeholder:text-white/30"
@@ -159,11 +161,11 @@ export default function WaitlistPageClient() {
                   boxShadow: "0px 14px 6px -8px rgba(255,47,0,0.2), inset 0px 2px 1px 0px rgba(255,255,255,0.5)",
                 }}
               >
-                {submitting ? "Joining..." : "Join the waitlist"}
+                {submitting ? t("joining") : t("join")}
               </button>
 
               <p className="text-center text-[13px]" style={{ color: "rgba(255,255,255,0.4)" }}>
-                No spam. Unsubscribe anytime.
+                {t("noSpam")}
               </p>
             </form>
           )}
@@ -186,7 +188,7 @@ export default function WaitlistPageClient() {
             ))}
           </div>
           <span className="text-[14px] font-medium" style={{ color: "rgba(255,255,255,0.55)" }}>
-            Join others already on the list
+            {t("socialProof")}
           </span>
         </motion.div>
 
@@ -198,7 +200,7 @@ export default function WaitlistPageClient() {
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
           style={{ boxShadow: "0px 30px 80px -20px rgba(255,47,0,0.25)" }}
         >
-          <img src="/soon.jpg" alt="Healed app — coming soon" className="relative w-full h-auto object-contain" />
+          <img src="/soon.jpg" alt={t("appPreviewAlt")} className="relative w-full h-auto object-contain" />
         </motion.div>
       </div>
     </div>

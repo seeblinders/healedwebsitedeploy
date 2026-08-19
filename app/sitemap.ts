@@ -1,38 +1,33 @@
 import type { MetadataRoute } from "next";
+import { routing } from "@/i18n/routing";
 
 const siteUrl = "https://www.healedapp.net";
 
+const pages: { path: string; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"]; priority: number }[] = [
+  { path: "", changeFrequency: "weekly", priority: 1 },
+  { path: "/support", changeFrequency: "monthly", priority: 0.6 },
+  { path: "/waitlist", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
+  { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: siteUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
+  const lastModified = new Date();
+
+  return pages.map(({ path, changeFrequency, priority }) => ({
+    url: `${siteUrl}${path}`,
+    lastModified,
+    changeFrequency,
+    priority,
+    alternates: {
+      languages: Object.fromEntries(
+        routing.locales.map((locale) => [
+          locale,
+          locale === routing.defaultLocale
+            ? `${siteUrl}${path}`
+            : `${siteUrl}/${locale}${path}`,
+        ])
+      ),
     },
-    {
-      url: `${siteUrl}/support`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${siteUrl}/waitlist`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/privacy`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${siteUrl}/terms`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-  ];
+  }));
 }
